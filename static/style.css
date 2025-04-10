@@ -1,0 +1,60 @@
+.required::after {
+    content: " *";
+    color: red;
+}
+
+/* Password Strength Indicator Styles */
+.password-strength {
+    font-size: 0.875rem;
+    padding: 0.25rem 0;
+}
+
+.password-strength.weak {
+    color: #dc3545;
+}
+
+.password-strength.medium {
+    color: #ffc107;
+}
+
+.password-strength.strong {
+    color: #198754;
+}
+
+/* Landing Page Styles */
+.landing-page {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.hero {
+    padding-top: 80px;
+    background: radial-gradient(circle at 30% 107%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+}
+
+.feature-card {
+    background: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.bi {
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .bi {
+    transform: scale(1.1);
+}
+
+.cta-buttons .btn {
+    transition: transform 0.2s ease;
+}
+
+.cta-buttons .btn:hover {
+    transform: translateY(-2px);
+}

@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 text-center mb-4">Create Your Account</h1>
+                <form method="POST" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstname" class="form-label required">First Name</label>
+                            <input type="text" id="firstname" name="firstname" class="form-control"
+                                   required aria-required="true" pattern="[a-zA-Z\s]{2,50}"
+                                   title="First name must be 2-50 letters only">
+                            <div class="invalid-feedback">First name must be 2-50 letters only.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastname" class="form-label required">Last Name</label>
+                            <input type="text" id="lastname" name="lastname" class="form-control"
+                                   required aria-required="true" pattern="[a-zA-Z\s]{2,50}"
+                                   title="Last name must be 2-50 letters only">
+                            <div class="invalid-feedback">Last name must be 2-50 letters only.</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label required">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control"
+                               required aria-required="true" autocomplete="email"
+                               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                               title="Please enter a valid email address">
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="password" class="form-label required">Password</label>
+                            <div class="input-group">
+                                <input type="password" id="password" name="password" class="form-control"
+                                       required aria-required="true"
+                                       pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$"
+                                       title="Password must be 8+ characters with at least 1 number and 1 special character">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword"
+                                        aria-label="Toggle password visibility">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Password must be 8+ characters with at least 1 number and 1 special character.</div>
+                            <div class="password-strength mt-1" id="passwordStrength"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="confirm_password" class="form-label required">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                                       required aria-required="true">
+                                <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword"
+                                        aria-label="Toggle password visibility">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Passwords do not match.</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label required">Gender</label>
+                        <select id="gender" name="gender" class="form-select" required aria-required="true">
+                            <option value="">Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="invalid-feedback">Please select your gender.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="designation" class="form-label required">Designation</label>
+                        <input type="text" id="designation" name="designation" class="form-control"
+                               required aria-required="true" maxlength="100"
+                               title="Designation must be 1-100 characters">
+                        <div class="invalid-feedback">Designation must be 1-100 characters.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label required">Age</label>
+                        <input type="number" id="age" name="age" class="form-control"
+                               required aria-required="true" min="18" max="120"
+                               title="Age must be between 18 and 120">
+                        <div class="invalid-feedback">Age must be between 18 and 120.</div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+                        <p class="text-center mb-0">
+                            <a href="{{ url_for('login') }}" class="text-decoration-none">Already have an account? Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Password visibility toggle
+    function setupPasswordToggle(passwordInput, toggleButton) {
+        toggleButton.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            const eyeIcon = this.querySelector('svg');
+            if (type === 'text') {
+                eyeIcon.innerHTML = '<path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/><path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/><path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>';
+            } else {
+                eyeIcon.innerHTML = '<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>';
+            }
+        });
+    }
+
+    setupPasswordToggle(document.querySelector('#password'), document.querySelector('#togglePassword'));
+    setupPasswordToggle(document.querySelector('#confirm_password'), document.querySelector('#toggleConfirmPassword'));
+
+    // Password strength indicator
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirm_password');
+    const passwordStrength = document.querySelector('#passwordStrength');
+
+    function checkPasswordStrength(password) {
+        let strength = 0;
+        if (password.length >= 8) strength++;
+        if (password.match(/[a-z]+/)) strength++;
+        if (password.match(/[A-Z]+/)) strength++;
+        if (password.match(/[0-9]+/)) strength++;
+        if (password.match(/[!@#$%^&*]+/)) strength++;
+        return strength;
+    }
+
+    password.addEventListener('input', function() {
+        const strength = checkPasswordStrength(this.value);
+        let message = '';
+        let className = '';
+
+        if (strength < 3) {
+            message = 'Weak password';
+            className = 'weak';
+        } else if (strength < 5) {
+            message = 'Medium strength password';
+            className = 'medium';
+        } else {
+            message = 'Strong password';
+            className = 'strong';
+        }
+
+        passwordStrength.textContent = message;
+        passwordStrength.className = 'password-strength ' + className;
+    });
+
+    // Form validation
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        // Check if passwords match
+        if (password.value !== confirmPassword.value) {
+            event.preventDefault();
+            confirmPassword.setCustomValidity('Passwords do not match');
+        } else {
+            confirmPassword.setCustomValidity('');
+        }
+
+        form.classList.add('was-validated');
+    });
+
+    // Clear custom validity on input
+    confirmPassword.addEventListener('input', function() {
+        this.setCustomValidity('');
+    });
+});
+</script>
+{% endblock %}
